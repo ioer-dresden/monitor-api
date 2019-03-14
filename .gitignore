@@ -1,0 +1,13 @@
+venv/*
+.idea/*
+monitor_api.wsgi
+activate_venv.bat
+requirements.txt
+app/__pycache__/
+app/config.py
+befehle_putty.txt
+flask_session/*
+python
+python3
+python3.4
+gunicorn-error.log

@@ -1,0 +1,43 @@
+/*
+Global
+ */
+/* Works not on IE -> a shame*/
+:root{
+    --main-color:#4E60AA;
+    --active-color:#8CB91B
+}
+.header{
+    margin-top: 0;
+    width: 100%;
+    height:50px;
+    background-color: #4E60AA;
+}
+.header h2{
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    padding: 1vh;
+}
+/*
+Navbar
+ */
+ .navbar{
+     width:100%;
+     background-color: lightgrey !important;
+ }
+ .navbar ul li button{
+     margin-left: 2vh;
+ }
+ .navbar .logout .btn{
+    color:white;
+}
+ /*
+ Sidenav
+  */
+#side_nav{
+    position: absolute;
+    left:0;
+    height:100%;
+    top:120px;
+    border-right: 2px solid grey;
+}
