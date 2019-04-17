@@ -2,7 +2,6 @@ class OGC extends React.Component{
    constructor(props) {
         super(props);
         this.state={
-            service:"wfs",
             result:false,
             resultJSX:false
         };
@@ -12,10 +11,11 @@ class OGC extends React.Component{
         let service=ev.currentTarget.getAttribute('data-service');
         if(service==="updateAll"){
             SwalManager.setLoading("info");
-            RequestManager.updateOGCService(this.state.service)
+            RequestManager.updateOGCService(this.props.service)
                 .then(result => {
                    SwalManager.removeDialog();
                    let data = result.data;
+                   console.info(data);
                     let resultJSX = (
                            <div className="card-columns">
                                {data.map((value,index)=>{
@@ -115,6 +115,6 @@ class OGC extends React.Component{
   }
 }
 ReactDOM.render(
-    < OGC />,
+    < OGC service={"wfs"}/>,
     document.getElementById('page_content')
 );

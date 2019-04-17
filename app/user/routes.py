@@ -30,6 +30,11 @@ def index():
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+@login_manager.unauthorized_handler
+def unauthorized():
+    form = RegisterForm(form_type="inline")
+    return render_template('user/signup.html', form=form)
+
 @user.route('/user', methods=['GET', 'POST'])
 def get_service():
     #get all url parameter

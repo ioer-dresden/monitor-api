@@ -73,12 +73,8 @@ class Wms(OgcService):
                 extends_request = requests.get(url_spatial_extend)
                 extends = json.loads(extends_request.text)
                 # builder
-                try:
-                     self.indicator=Indicator(ind_id,ind_name,ind_description,times,extends,unit,methodology,colors,cat)
-                     results.append(self.writeFile())
-                except IOError as e:
-                    app.logger.debug("Error in create WMS_service for Indicator:\n {}\n{}\n{}\n{}".format(ind_id,times,extends,e))
-                    #print("Error in create WMS_service for Indicator:\n {}\n{}\n{}\n{}".format(ind_id,times,extends,e))
+                self.indicator=Indicator(ind_id,ind_name,ind_description,times,extends,unit,methodology,colors,cat)
+                results.append(self.writeFile())
 
         return results
 
@@ -226,6 +222,9 @@ class Wms(OgcService):
             file.write("END")
         except IOError as e:
             created_layer = self.indicator.toJSON("I/O error({0})".format(e))
+            app.logger.debug("Error in create WMS_service for Indicator:\n {0}".format(created_layer))
+        except:
+            created_layer = self.indicator.toJSON("I/O error({0})".format("Spatial Extend not defined"))
             app.logger.debug("Error in create WMS_service for Indicator:\n {0}".format(created_layer))
 
         return created_layer

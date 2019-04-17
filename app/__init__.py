@@ -21,7 +21,6 @@ app.logger.setLevel(gunicorn_logger.level)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 db.init_app(app)
-CORS(app)
 Session(app)
 
 from app.user import user

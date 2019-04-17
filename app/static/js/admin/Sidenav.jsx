@@ -7,10 +7,14 @@ class Sidenav extends React.Component{
            this.handleClick = this.handleClick.bind(this);
        }
        handleClick(ev) {
-           console.log(ev.currentTarget.getAttribute('data-service'));
+           const service = ev.currentTarget.getAttribute('data-service');
             this.setState({
-              active: ev.currentTarget.getAttribute('data-service')
+              active: service
             });
+            const ogc =  < OGC service={service}/>;
+                ReactDOM.render(
+                ogc,
+                document.getElementById('page_content'));
           }
         render(){
             return(
