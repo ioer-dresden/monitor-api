@@ -34,7 +34,9 @@ def load_user(user_id):
 def unauthorized():
     form = RegisterForm(form_type="inline")
     return render_template('user/signup.html', form=form)
+'''
 
+'''
 @user.route('/user', methods=['GET', 'POST'])
 def get_service():
     #get all url parameter
