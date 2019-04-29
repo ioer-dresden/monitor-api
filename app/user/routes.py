@@ -35,7 +35,7 @@ def unauthorized():
     form = RegisterForm(form_type="inline")
     return render_template('user/signup.html', form=form)
 '''
-
+handels the streaming of the given OGC-Service
 '''
 @user.route('/user', methods=['GET', 'POST'])
 def get_service():
@@ -46,6 +46,7 @@ def get_service():
     id=''
     key = ''
     paramater_ogc = ''
+
     for x in parameters:
         x_str = x.lower()
         if 'key' in x:
@@ -56,6 +57,7 @@ def get_service():
             id=x_str.replace('id=','')
         else:
             paramater_ogc +='&'+x_str
+
     url_ogc ="https://monitor.ioer.de/cgi-bin/mapserv?map=/mapsrv_daten/detailviewer/{}_mapfiles/{}_{}.map&SERVICE={}{}".format(service.lower(),service.lower(),id.upper(),service.upper(),paramater_ogc)
     app.logger.info("Mapserver request: %s", url_ogc)
     req = requests.get(url_ogc, stream=True)
