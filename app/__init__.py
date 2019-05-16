@@ -1,12 +1,12 @@
-from flask import Flask,session
-from flask_cors import CORS
-from app.config import Config
-from flask_sqlalchemy  import SQLAlchemy
-from flask_migrate import Migrate
-from flask_bootstrap import Bootstrap
-from flask_session import Session
-
 import logging
+
+from flask import Flask
+from flask_bootstrap import Bootstrap
+from flask_migrate import Migrate
+from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
+
+from app.config import Config
 
 logging.basicConfig(level=logging.INFO)
 

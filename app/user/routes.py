@@ -8,7 +8,7 @@ from flask import url_for
 from flask import Response
 
 from app.user.models.Forms import *
-from app.user.models.Users import *
+from app.user.models.User import *
 from app.config import Config
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.user.models.Token import Token
@@ -177,19 +177,20 @@ def send_reset_password():
 @user.route('/reset/<token_pass>',methods=['GET', 'POST'])
 def reset_password(token_pass):
     form = ResetPasswordForm(form_type="inline")
-    if form.validate_on_submit():
-        email = token.confirm_token(token_pass)
-        user = User.query.filter_by(email=email).first_or_404()
-        new_pw =  generate_password_hash(form.password.data, method='sha256')
-        user.password = new_pw
-        db.session.add(user)
-        db.session.commit()
-        logout_user()
-        return render_template('user/reset_password.html',reseted=True)
-    '''else:
+    if token.confirm_token(token_pass):
+        if form.validate_on_submit():
+            email = token.confirm_token(token_pass)
+            user = User.query.filter_by(email=email).first_or_404()
+            new_pw =  generate_password_hash(form.password.data, method='sha256')
+            user.password = new_pw
+            db.session.add(user)
+            db.session.commit()
+            logout_user()
+            return render_template('user/reset_password.html',reseted=True)
+        return render_template('user/reset_password.html', reset_form=form)
+    else:
         error = Markup('<div class="alert alert-danger w-100" role="alert">Der Token für die Zurücksetzung ist abgelaufen</div>')
-        return render_template('user/reset_password.html', error=error)'''
-    return render_template('user/reset_password.html', reset_form=form)
+        return render_template('user/reset_password.html', error=error)
 '''
 Service overview, shown if the USER is authenticated
 '''

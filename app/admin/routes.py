@@ -3,7 +3,7 @@ from flask import render_template, jsonify
 from flask_login import LoginManager, login_required
 from app.admin import admin
 from app import app
-from app.user.models.Users import *
+from app.user.models.User import *
 from app.admin.services.Wfs import Wfs
 from app.admin.services.Wcs import Wcs
 from app.admin.services.Wms import Wms
