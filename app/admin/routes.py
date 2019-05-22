@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, jsonify
 from flask_login import LoginManager, login_required
-from app.admin import admin
+
 from app import app
-from app.user.models.User import *
-from app.admin.services.Wfs import Wfs
-from app.admin.services.Wcs import Wcs
-from app.admin.services.Wms import Wms
+from app.admin import admin
+from app.admin.services.OgcFactory import OgcFactory
 from app.user.models.Forms import *
+from app.user.models.User import *
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -29,21 +28,20 @@ def admin_page():
 @admin.route('/wfs',methods=['GET', 'POST'])
 @login_required
 def wfs_service():
-    #wfs = Wfs('G:\\mapsrv_daten\\detailviewer\\wfs_mapfiles')
-    wfs = Wfs()
-    return jsonify(wfs.createAllServices())
+    #local_path = 'G:\\mapsrv_daten\\detailviewer\\wfs_mapfiles'
+    wfs = OgcFactory()
+    return jsonify(wfs.create_service("wfs").createAllServices())
 
 @admin.route('/wcs',methods=['POST'])
 @login_required
 def wcs_service():
-    #wcs = Wcs('G:\\mapsrv_daten\\detailviewer\\wcs_mapfiles')
-    wcs = Wcs()
-    return jsonify(wcs.createAllServices())
+    #local_path = 'G:\\mapsrv_daten\\detailviewer\\wcs_mapfiles'
+    wcs = OgcFactory()
+    return jsonify(wcs.create_service("wcs").createAllServices())
 
 @admin.route('/wms',methods=['POST'])
 @login_required
 def wms_service():
-    #wms = Wms('G:\\mapsrv_daten\\detailviewer\\wms_mapfiles')
-    wms = Wms()
-    return jsonify(wms.createAllServices())
-
+    #local_path = 'G:\\mapsrv_daten\\detailviewer\\wms_mapfiles'
+    wms = OgcFactory()
+    return jsonify(wms.create_service("wms").createAllServices())

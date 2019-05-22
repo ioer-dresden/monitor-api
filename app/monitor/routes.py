@@ -3,7 +3,7 @@ import requests
 from flask import jsonify,request
 from flask_mail import Mail, Message
 from app.monitor import monitor
-from app.admin.models.IndicatorValues import IndicatorValues
+from app.admin.services.IndicatorValues import IndicatorValues
 from app.config import Config
 from app import app
 

@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 import os
 import codecs
-import datetime
 
 from app import *
-from app.admin.models.IndicatorValues import IndicatorValues
-from app.models.Toolbox import Toolbox
+from app.admin.services.IndicatorValues import IndicatorValues
+from app.admin.models.Toolbox import Toolbox
 from app.admin.models.Indicator import Indicator
 from app.admin.interfaces.OgcService import OgcService
 
-class Wfs(OgcService):
+class WfsService(OgcService):
     indicator = None
     def __init__(self,path='/mapsrv_daten/detailviewer/wfs_mapfiles'):
         self.service='wfs'
