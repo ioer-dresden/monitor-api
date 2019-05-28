@@ -117,6 +117,7 @@ class WcsService(OgcService):
                     '        "wcs_rangeset_nullvalue" "-9998.000"\n'
                     '        "wcs_formats" "GTiff"\n'
                     '        "wcs_nilvalues" "-9998.000"\n'
+                    '        "ows_enable_request" "*"\n'
                     '    END\n'
                     'END\n'
                     'PROJECTION\n'

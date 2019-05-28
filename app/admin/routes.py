@@ -26,22 +26,22 @@ def admin_page():
     return render_template("admin/index.html")
 
 @admin.route('/wfs',methods=['GET', 'POST'])
-@login_required
+#@login_required
 def wfs_service():
-    #local_path = 'G:\\mapsrv_daten\\detailviewer\\wfs_mapfiles'
+    local_path = 'G:\\mapsrv_daten\\detailviewer\\wfs_mapfiles'
     wfs = OgcFactory()
-    return jsonify(wfs.create_service("wfs").createAllServices())
+    return jsonify(wfs.create_service("wfs",local_path).createAllServices())
 
 @admin.route('/wcs',methods=['POST'])
-@login_required
+#@login_required
 def wcs_service():
-    #local_path = 'G:\\mapsrv_daten\\detailviewer\\wcs_mapfiles'
+    local_path = 'G:\\mapsrv_daten\\detailviewer\\wcs_mapfiles'
     wcs = OgcFactory()
-    return jsonify(wcs.create_service("wcs").createAllServices())
+    return jsonify(wcs.create_service("wcs",local_path).createAllServices())
 
 @admin.route('/wms',methods=['POST'])
-@login_required
+#@login_required
 def wms_service():
-    #local_path = 'G:\\mapsrv_daten\\detailviewer\\wms_mapfiles'
+    local_path = 'G:\\mapsrv_daten\\detailviewer\\wms_mapfiles'
     wms = OgcFactory()
-    return jsonify(wms.create_service("wms").createAllServices())
+    return jsonify(wms.create_service("wms",local_path).createAllServices())

@@ -86,6 +86,7 @@ class WfsService(OgcService):
                 '       "ows_role" "Erzeuger" \n'
                 '       "wfs_enable_request" "*" \n'
                 '       "wfs_encoding" "UTF-8" \n'
+                '       "ows_enable_request" "*"\n'
                 "END \n"
             "END \n".format(self.indicator.get_name(),self.indicator.get_description(),self.indicator.get_methodogy()))
 

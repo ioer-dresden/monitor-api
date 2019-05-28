@@ -147,6 +147,7 @@ class WmsService(OgcService):
                     '        "wms_feature_info_mime_type" "text/html" \n'
                     '        "wms_enable_request" "*"\n'
                     '        "wms_encoding" "UTF-8"\n'
+                    '        "ows_enable_request" "*"\n'
                     '    END\n'
                     'END\n\n'
                     'PROJECTION\n'
