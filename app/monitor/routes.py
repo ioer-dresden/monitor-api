@@ -10,21 +10,28 @@ from app import app
 '''
 Mails
 '''
-@monitor.route('/mail', methods=['GET', 'POST'])
+@monitor.route('/mail', methods=['GET'])
 def send():
-    sender = request.args.get('sender')
-    message = request.args.get('message')
-    name = request.args.get('name')
+    try:
+        sender = request.args.get('sender')
+        message = request.args.get('message')
+        name = request.args.get('name')
 
-    mail = Mail(app)
-    msg = Message(body=message,
-                  sender=sender,
-                  subject='IÖR-Feedback from: {}'.format(name),
-                  recipients=["monitor@ioer.de"])
-    app.logger.debug("send Mail from:{} \n message:{} \n sendto:{}".format(sender,message,"monitor@ioer.de"))
-    mail.send(msg)
-    return jsonify("send")
-@monitor.route('/error_mail', methods=['GET', 'POST'])
+        mail = Mail(app)
+
+        msg = Message(body=message,
+                      sender=sender,
+                      subject='IÖR-Feedback from: {}'.format(name),
+                      recipients=["monitor@ioer.de"])
+        app.logger.debug("send Mail from:{} \n message:{} \n sendto:{}".format(sender,message,"monitor@ioer.de"))
+        mail.send(msg)
+        return jsonify("send")
+    except:
+        return jsonify("error")
+'''
+Error Messages
+'''
+@monitor.route('/error_mail', methods=['GET'])
 def send_error():
     message = request.args.get('message')
     name = request.args.get('name')
