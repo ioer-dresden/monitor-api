@@ -5,7 +5,7 @@ import codecs
 from app import *
 from app.admin.services.IndicatorValues import IndicatorValues
 from app.admin.models.Toolbox import Toolbox
-from app.admin.models.Indicator import Indicator
+from app.admin.models.IoerIndicator import IoerIndicator
 from app.admin.interfaces.OgcService import OgcService
 
 class WfsService(OgcService):
@@ -30,7 +30,7 @@ class WfsService(OgcService):
                 methodology = self.toolbox.clean_string(val["methodik"])
                 unit = val["unit"]
                 #builder
-                self.indicator = Indicator(ind_id, ind_name, ind_description, times, spatial_extends, unit, methodology)
+                self.indicator = IoerIndicator(ind_id, ind_name, ind_description, times, spatial_extends, unit, methodology)
                 results.append(self.writeFile())
         return results
 

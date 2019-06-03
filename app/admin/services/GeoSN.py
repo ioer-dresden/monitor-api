@@ -7,18 +7,20 @@ import xmltodict
 
 class GeoSN(GeoSnService):
 
-    def __init__(self):
+    def __init__(self, _path='/srv/www/htdocs/monitor_ogc_xml/'):
+        self.path = _path
         pass
 
     def update(self):
         pass
 
-    def create(self, indicator, file_path=None):
-        file = '../assets/1.xml'
+    def create(self, indicator):
+        # schema file
+        file = '../assets/geosn_schema.xml'
         with open(file) as fd:
             doc = xmltodict.parse(fd.read())
 
         return doc
 
-    def delete(self, file_path=None):
+    def delete(self):
         pass

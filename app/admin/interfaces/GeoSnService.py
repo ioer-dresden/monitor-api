@@ -7,9 +7,9 @@ class GeoSnService(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def create(self, indicator, file_path=None):
+    def create(self, indicator):
         pass
 
     @abc.abstractmethod
-    def delete(self, file_path=None):
+    def delete(self):
         pass

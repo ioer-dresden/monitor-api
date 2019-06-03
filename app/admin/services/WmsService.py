@@ -11,7 +11,7 @@ from app.config import Config
 from app.admin.models.Toolbox import Toolbox
 from app.admin.models.Color import Color
 from app.admin.services.IndicatorValues import IndicatorValues
-from app.admin.models.Indicator import Indicator
+from app.admin.models.IoerIndicator import IoerIndicator
 from app.admin.interfaces.OgcService import OgcService
 
 '''
@@ -76,8 +76,8 @@ class WmsService(OgcService):
                 extends_request = requests.get(url_spatial_extend)
                 extends = json.loads(extends_request.text)
                 # builder
-                self.indicator = Indicator(ind_id, ind_name, ind_description, times, extends, unit, methodology, colors,
-                                           cat)
+                self.indicator = IoerIndicator(ind_id, ind_name, ind_description, times, extends, unit, methodology, colors,
+                                               cat)
                 results.append(self.writeFile())
 
         return results
