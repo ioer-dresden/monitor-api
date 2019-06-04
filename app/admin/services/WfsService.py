@@ -104,7 +104,7 @@ class WfsService(OgcService):
 
             for t in sorted(time_array):
                 int_time = int(t)
-                if int_time>2006 and int_time<=2016:
+                if int_time>2006:
                     for s in self.indicator.get_spatial_extends():
                         int_s = int(self.indicator.get_spatial_extends()[s])
                         if int_s==1:
