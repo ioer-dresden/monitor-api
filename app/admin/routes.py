@@ -4,6 +4,7 @@ from flask_login import LoginManager, login_required
 
 from app import app
 from app.admin import admin
+from app.admin.services.GeoSN import GeoSN
 from app.admin.services.OgcFactory import OgcFactory
 from app.user.models.Forms import *
 from app.user.models.User import *
@@ -28,20 +29,23 @@ def admin_page():
 @admin.route('/wfs',methods=['GET', 'POST'])
 #@login_required
 def wfs_service():
-    local_path = 'G:\\mapsrv_daten\\detailviewer\\wfs_mapfiles'
-    wfs = OgcFactory()
-    return jsonify(wfs.create_service("wfs",local_path).createAllServices())
+    wfs = OgcFactory('wfs')
+    return jsonify(wfs.create_service().createAllServices())
 
 @admin.route('/wcs',methods=['POST'])
 #@login_required
 def wcs_service():
-    local_path = 'G:\\mapsrv_daten\\detailviewer\\wcs_mapfiles'
-    wcs = OgcFactory()
-    return jsonify(wcs.create_service("wcs",local_path).createAllServices())
+    wcs = OgcFactory("wcs")
+    return jsonify(wcs.create_service().createAllServices())
 
 @admin.route('/wms',methods=['POST'])
 #@login_required
 def wms_service():
-    local_path = 'G:\\mapsrv_daten\\detailviewer\\wms_mapfiles'
-    wms = OgcFactory()
-    return jsonify(wms.create_service("wms",local_path).createAllServices())
+    wms = OgcFactory("wms")
+    return jsonify(wms.create_service().createAllServices())
+
+#@login_required
+@admin.route('/geosn',methods=['POST'])
+def geosn_service():
+    geosn = GeoSN('/srv/www/htdocs/monitor_ogc_xml/')
+    return jsonify(geosn.update())

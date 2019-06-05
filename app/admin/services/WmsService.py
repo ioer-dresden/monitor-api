@@ -78,19 +78,19 @@ class WmsService(OgcService):
                 # builder
                 self.indicator = IoerIndicator(ind_id, ind_name, ind_description, times, extends, unit, methodology, colors,
                                                cat)
-                results.append(self.writeFile())
+                results.append(self.__writeFile())
 
         return results
 
     def createSingleService(self, Indicator, file_path=None):
         self.indicator = Indicator
-        return (self.writeFile(file_path))
+        return (self.__writeFile(file_path))
 
     '''
     old version creates mapfiles for the old mapserver
     '''
 
-    def writeFile(self, file_path=None, old_version=False):
+    def __writeFile(self, file_path=None, old_version=False):
         try:
             # extract the times
             time_array = self.indicator.get_time().split(",")

@@ -13,14 +13,13 @@ class OGC extends React.Component{
             SwalManager.setLoading("info");
             RequestManager.updateOGCService(this.props.service)
                 .then(result => {
+                    console.log(result);
                    SwalManager.removeDialog();
                    let data = result.data;
-                   console.info(data);
-                    let resultJSX = (
+                   let resultJSX = (
                            <div className="card-columns">
                                {data.map((value,index)=>{
                                    let elements = data[index][Object.keys(value)];
-                                   let sp_extend = Object.keys(elements.spatial_extends);
                                    if(elements.state==="create") {
                                        return (
                                            <div className="card text-white bg-success">
@@ -68,6 +67,7 @@ class OGC extends React.Component{
                     console.error(error);
                SwalManager.setError();
             });
+            this.setState({result:false});
         }else if(service==="create"){
 
         }

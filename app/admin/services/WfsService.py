@@ -31,14 +31,14 @@ class WfsService(OgcService):
                 unit = val["unit"]
                 #builder
                 self.indicator = IoerIndicator(ind_id, ind_name, ind_description, times, spatial_extends, unit, methodology)
-                results.append(self.writeFile())
+                results.append(self.__writeFile())
         return results
 
     def createSingleService(self,Indicator,file_path=None):
         self.indicator=Indicator
-        self.writeFile(file_path)
+        self.__writeFile(file_path)
 
-    def writeFile(self,file_path=None):
+    def __writeFile(self, file_path=None):
         try:
             # extract the times
             time_array = self.indicator.get_time().split(",")
