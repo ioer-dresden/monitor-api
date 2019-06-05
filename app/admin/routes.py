@@ -27,25 +27,25 @@ def admin_page():
     return render_template("admin/index.html")
 
 @admin.route('/wfs',methods=['GET', 'POST'])
-#@login_required
+@login_required
 def wfs_service():
     wfs = OgcFactory('wfs')
     return jsonify(wfs.create_service().createAllServices())
 
 @admin.route('/wcs',methods=['POST'])
-#@login_required
+@login_required
 def wcs_service():
     wcs = OgcFactory("wcs")
     return jsonify(wcs.create_service().createAllServices())
 
 @admin.route('/wms',methods=['POST'])
-#@login_required
+@login_required
 def wms_service():
     wms = OgcFactory("wms")
     return jsonify(wms.create_service().createAllServices())
 
-#@login_required
 @admin.route('/geosn',methods=['POST'])
+@login_required
 def geosn_service():
     geosn = GeoSN('/srv/www/htdocs/monitor_ogc_xml/')
     return jsonify(geosn.update())
