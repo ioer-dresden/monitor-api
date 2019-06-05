@@ -36,7 +36,7 @@ class GeoSN(GeoSnService):
                 methodology = self.toolbox.clean_string(val["methodik"])
                 unit = val["unit"]
                 # builder
-                self.indicator = IoerIndicator(ind_id, ind_name, ind_description, times, False, unit, methodology)
+                self.indicator = IoerIndicator(ind_id, ind_name, ind_description, times, "WFS", unit, methodology)
                 results.append(self.__updateFile("wfs"))
 
 
@@ -51,7 +51,7 @@ class GeoSN(GeoSnService):
                 methodology = self.toolbox.clean_string(val["methodik"])
                 unit = val["unit"]
                 # builder
-                self.indicator = IoerIndicator(ind_id, ind_name, ind_description, times, False, unit, methodology)
+                self.indicator = IoerIndicator(ind_id, ind_name, ind_description, times, "WMS/WCS", unit, methodology)
                 results.append(self.__updateFile("wms"))
                 results.append(self.__updateFile("wcs"))
 
