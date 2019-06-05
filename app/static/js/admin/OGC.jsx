@@ -87,26 +87,26 @@ class OGC extends React.Component{
                     </div>
                 </div>
                 <div className="col-md-3">
-                   <div className="card mx-sm-1 p-3">
+                   <div className="card mx-sm-1 p-3 el-disabled">
                         <div className="card-img-top text-center text-primary"><i className="fa fa-edit fa-4x" aria-hidden="true"></i></div>
                         <div className="card-body text-center">
-                            <a href="#" className="btn btn-primary" data-service="create">Einzelnen Dienste erstellen</a>
+                            <a href="#" className="btn btn-primary el-disabled" data-service="create">Einzelnen Dienste erstellen</a>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-3">
-                    <div className="card mx-sm-1 p-3">
+                    <div className="card mx-sm-1 p-3 el-disabled">
                         <div className="card-img-top text-center text-danger"><i className="fa fa-trash-alt fa-4x" aria-hidden="true"></i></div>
                         <div className="card-body text-center">
-                            <a href="#" className="btn btn-danger">Dienst löschen</a>
+                            <a href="#" className="btn btn-danger el-disabled">Dienst löschen</a>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-3">
-                    <div className="card mx-sm-1 p-3">
+                    <div className="card mx-sm-1 p-3 el-disabled">
                         <div className="card-img-top text-center text-success"><i className="fa fa-table fa-4x" aria-hidden="true"></i></div>
                         <div className="card-body text-center">
-                            <a href="#" className="btn btn-success">Übersicht</a>
+                            <a href="#" className="btn btn-success el-disabled">Übersicht</a>
                         </div>
                     </div>
                 </div>
