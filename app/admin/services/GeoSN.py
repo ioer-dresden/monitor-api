@@ -5,8 +5,6 @@ import os
 from app import app
 from app.admin.interfaces.GeoSnService import GeoSnService
 import xmltodict
-
-# ToDo Weblaufwerk: https://monitor.ioer.de/ogc/  -> von Jörg erstellt auf Server ist es der Pfad: /srv/www/htdocs/monitor_ogc_xml/
 from app.admin.models.IoerIndicator import IoerIndicator
 from app.admin.models.Toolbox import Toolbox
 from app.admin.services.IndicatorValues import IndicatorValues
