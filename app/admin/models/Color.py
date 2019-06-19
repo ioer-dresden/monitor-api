@@ -6,7 +6,7 @@ class Color:
         self.max_color=max_color
         self.classes=(int(classes))
 
-    def Berechnung(self,min_color,max_color):
+    def __Berechnung(self, min_color, max_color):
         klasse=[]
         if min_color<max_color:
             width=round((max_color-min_color)/(self.classes-1))
@@ -33,7 +33,7 @@ class Color:
 
         return klasse
 
-    def HexToRGB(self,hex):
+    def __HexToRGB(self, hex):
         if "#" not in hex:
             hex="#{}".format(hex)
 
@@ -45,12 +45,12 @@ class Color:
     def buildColorPalette(self):
         colors = []
         #convert color in RGB
-        colmin_rgb = self.HexToRGB(self.min_color)
-        colmax_rgb = self.HexToRGB(self.max_color)
+        colmin_rgb = self.__HexToRGB(self.min_color)
+        colmax_rgb = self.__HexToRGB(self.max_color)
 
-        r = self.Berechnung(colmin_rgb[0],colmax_rgb[0])
-        g = self.Berechnung(colmin_rgb[1],colmax_rgb[1])
-        b = self.Berechnung(colmin_rgb[2],colmax_rgb[2])
+        r = self.__Berechnung(colmin_rgb[0], colmax_rgb[0])
+        g = self.__Berechnung(colmin_rgb[1], colmax_rgb[1])
+        b = self.__Berechnung(colmin_rgb[2], colmax_rgb[2])
 
         for x in range(0,len(r)):
             colors.append(self.RGBToHex(r[x],g[x],b[x]))
