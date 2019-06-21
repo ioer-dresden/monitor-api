@@ -1,5 +1,5 @@
 
-#### Respository für die Entwicklung der [Monitor API](https://monitor.ioer.de/monitor_api).
+#### Respository für die Entwicklung der <a href="https://monitor.ioer.de/monitor_api" target="_blank">Monitor API</a>.
 ## Überblick
 Im folgenden Abschnitt sind kurz die bis jetzt implementierten Module zusammengefasst:
 
