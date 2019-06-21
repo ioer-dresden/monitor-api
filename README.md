@@ -5,16 +5,17 @@ Im folgenden Abschnitt sind kurz die bis jetzt implementierten Module zusammenge
 
 | Modul| Pfad | Aufgabe |
 |:-----|:---------------|:--------------------|
-| admin | app/admin | Alle Administrativen Requests und Oberfläche und OGC-Services|
+| admin | app/admin | Alle Administrativen Requests,GUI und OGC-Services|
 | monitor | app/monitor | Monitor Requests |
 | sora | app/sora | API für das Forschungsprojekt [SoRa](http://www.sora-projekt.de/)|
-| user | app/user | Nutzermanagement |
+| user | app/user | Backend, GUI für die Bereitstellung der OGC-Dienste  |
 
 ### Dokumentation
 Unter der [**Seite**](https://ioer-dresden.github.io/monitor-api-doku/) ist die Dokumentation der Anwendung verfügbar.
 
 
 ### Technologien
-- Flask
-- React
-- JQuery
+- [Flask](http://flask.pocoo.org/)
+- [React](https://reactjs.org/)
+- [JQuery](https://jquery.com/)
+- [Axios](https://github.com/axios/axios)
