@@ -7,7 +7,7 @@ import datetime
 import csv
 
 from app import *
-from app.config import Config
+from app.Config import Config
 from app.admin.models.Toolbox import Toolbox
 from app.admin.models.Color import Color
 from app.admin.services.IndicatorValues import IndicatorValues

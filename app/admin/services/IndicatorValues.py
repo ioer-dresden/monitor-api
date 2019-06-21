@@ -1,7 +1,7 @@
 import requests
 import json
 
-from app.config import Config
+from app.Config import Config
 
 class IndicatorValues:
     def __init__(self,format):

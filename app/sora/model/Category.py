@@ -3,7 +3,7 @@ from rdflib import Graph, RDF, RDFS, Namespace, URIRef, Literal
 import requests
 import json
 import logging as log
-from app.config import Config
+from app.Config import Config
 
 class Category:
     def __init__(self,json_url):

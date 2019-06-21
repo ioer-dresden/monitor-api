@@ -1,6 +1,6 @@
 from itsdangerous import URLSafeTimedSerializer
 
-from app.config import Config
+from app.Config import Config
 
 class Token:
     def generate_confirmation_token(self,email):

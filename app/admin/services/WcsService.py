@@ -5,7 +5,7 @@ import requests
 import json
 import datetime
 from app import *
-from app.config import Config
+from app.Config import Config
 from app.admin.models.Toolbox import Toolbox
 from app.admin.services.IndicatorValues import IndicatorValues
 from app.admin.models.IoerIndicator import IoerIndicator

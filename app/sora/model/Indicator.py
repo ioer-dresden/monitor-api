@@ -1,6 +1,6 @@
 from flask import request
 from rdflib import Graph, RDF, RDFS, Namespace, URIRef, Literal, BNode
-from app.config import Config
+from app.Config import Config
 import requests
 import logging as log
 import os

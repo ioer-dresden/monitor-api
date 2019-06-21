@@ -8,7 +8,7 @@ from app.sora import sora
 from app.sora.RequestHandler import ESRIServerManager
 from app.sora.model.Indicator import Indicator
 from app.sora.model.Category import Category
-from app.config import Config
+from app.Config import Config
 
 url = '%s?values={"format":{"id":"raster"},"query":"getAllIndicators"}' % (Config.URL_BACKEND_SORA)
 

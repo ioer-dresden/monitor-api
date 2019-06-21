@@ -9,7 +9,7 @@ from flask import Response
 
 from app.user.models.Forms import *
 from app.user.models.User import *
-from app.config import Config
+from app.Config import Config
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.user.models.Token import Token
 from app.user.models.Mailer import Mailer
