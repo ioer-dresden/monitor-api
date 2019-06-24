@@ -2,6 +2,7 @@
 from flask import render_template, jsonify
 from flask_login import LoginManager, login_required
 
+from app.InvalidUsage import *
 from app import app
 from app.admin import admin
 from app.admin.services.GeoSN import GeoSN
@@ -29,23 +30,41 @@ def admin_page():
 @admin.route('/wfs',methods=['GET', 'POST'])
 @login_required
 def wfs_service():
-    wfs = OgcFactory('wfs')
-    return jsonify(wfs.create_service().createAllServices())
+    try:
+        wfs = OgcFactory('wfs')
+        return jsonify(wfs.create_service().createAllServices())
+    except Exception as e:
+        return InvalidUsage(e, status_code=410)
 
 @admin.route('/wcs',methods=['POST'])
 @login_required
 def wcs_service():
-    wcs = OgcFactory("wcs")
-    return jsonify(wcs.create_service().createAllServices())
+    try:
+        wcs = OgcFactory("wcs")
+        return jsonify(wcs.create_service().createAllServices())
+    except Exception as e:
+        return InvalidUsage(e, status_code=410)
 
 @admin.route('/wms',methods=['POST'])
 @login_required
 def wms_service():
-    wms = OgcFactory("wms")
-    return jsonify(wms.create_service().createAllServices())
+    try:
+        wms = OgcFactory("wms")
+        return jsonify(wms.create_service().createAllServices())
+    except Exception as e:
+        return InvalidUsage(e, status_code=410)
 
 @admin.route('/geosn',methods=['POST'])
 @login_required
 def geosn_service():
-    geosn = GeoSN('/srv/www/htdocs/monitor_ogc_xml/')
-    return jsonify(geosn.update())
+    try:
+        geosn = GeoSN('/srv/www/htdocs/monitor_ogc_xml/')
+        return jsonify(geosn.update())
+    except Exception as e:
+        return InvalidUsage(e, status_code=410)
+
+@admin.errorhandler(InvalidUsage)
+def handle_invalid_usage(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response

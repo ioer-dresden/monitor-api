@@ -5,7 +5,6 @@ from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
-
 from app.Config import Config
 
 logging.basicConfig(level=logging.INFO)
@@ -28,7 +27,8 @@ from app.sora import sora
 from app.admin import admin
 from app.monitor import monitor
 
+# register blueprints
 app.register_blueprint(user, url_prefix='/')
-app.register_blueprint(sora,url_prefix="/sora")
+app.register_blueprint(sora, url_prefix="/sora")
 app.register_blueprint(admin, url_prefix='/admin')
-app.register_blueprint(monitor,url_prefix='/monitor')
+app.register_blueprint(monitor, url_prefix='/monitor')
