@@ -6,7 +6,7 @@ import os
 from app import *
 from app.sora import sora
 from app.InvalidUsage import *
-from app.sora.RequestHandler import ESRIServerManager
+from app.sora.ESRIServerManager import ESRIServerManager
 from app.sora.model.Indicator import Indicator
 from app.sora.model.Category import Category
 from app.Config import Config
