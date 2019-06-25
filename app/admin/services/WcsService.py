@@ -64,6 +64,8 @@ class WcsService(OgcService):
                       'SHAPEPATH "../data" \n'
                       'FONTSET "../mapfiles/fonts/fonts.txt" \n'
                       'IMAGECOLOR 255 255 255 \n'
+                      'CONFIG "MS_ERRORFILE" "/mapsrv_daten/detailviewer/log/ms_new_wcs_log.txt"\n'
+                       'CONFIG "PROJ_LIB"  "/usr/share/proj/"\n'
                       'MAXSIZE 8192\n'.format(self.indicator.get_name()))
 
             file.write(header)

@@ -28,7 +28,7 @@ def admin_page():
     return render_template("admin/index.html")
 
 @admin.route('/wfs',methods=['GET', 'POST'])
-@login_required
+#@login_required
 def wfs_service():
     try:
         wfs = OgcFactory('wfs')
@@ -37,7 +37,7 @@ def wfs_service():
         return InvalidUsage(e, status_code=410)
 
 @admin.route('/wcs',methods=['POST'])
-@login_required
+#@login_required
 def wcs_service():
     try:
         wcs = OgcFactory("wcs")
@@ -46,7 +46,7 @@ def wcs_service():
         return InvalidUsage(e, status_code=410)
 
 @admin.route('/wms',methods=['POST'])
-@login_required
+#@login_required
 def wms_service():
     try:
         wms = OgcFactory("wms")

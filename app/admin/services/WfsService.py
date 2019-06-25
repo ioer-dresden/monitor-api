@@ -56,6 +56,7 @@ class WfsService(OgcService):
                         'EXTENT 280371.03 5235855.50 921120.19 6101444.00\n'
                         'UNITS METERS\n'
                         'SHAPEPATH" ../data"\n'
+                        'CONFIG "MS_ERRORFILE" "/mapsrv_daten/detailviewer/log/ms_new_wfs_log.txt"\n'
                         'CONFIG "PROJ_LIB"  "/usr/share/proj/"\n'
                         'WEB\n'
                         'IMAGEPATH "/srv/www/htdocs/ms_tmp/"\n'

@@ -118,7 +118,7 @@ class WmsService(OgcService):
                       'SHAPEPATH "../data"\n'
                       'FONTSET "../mapfiles/fonts/fonts.txt"\n'
                       "IMAGECOLOR 255 255 255\n"
-                      'CONFIG "MS_ERRORFILE" "/mapsrv_daten/detailviewer/log/ms_log.txt"\n'
+                      'CONFIG "MS_ERRORFILE" "/mapsrv_daten/detailviewer/log/ms_new_wms_log.txt"\n'
                       'CONFIG "PROJ_LIB" "/usr/share/proj/"\n\n'.format(self.indicator.get_name()))
 
             file.write(header)
