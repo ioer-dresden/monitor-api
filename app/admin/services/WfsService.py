@@ -114,7 +114,9 @@ class WfsService(OgcService):
                             # geometry column is different for timeshifts in the year 2000
 
                             if s != 'g50' or s != 'stt':
-                                if int_time <= 2012:
+                                # if int_time <= 2012:
+                                # proposal from ss for adjusting with vg database update to 2017
+                                if int_time <= 2017:
                                     epsg = '31467'
 
                             sql = '{0} from (select g.gid, g.ags, g.{0}, g.gen, a."{1}" as value from vg250_{2}_{3}_grob g join basiskennzahlen_{3} a on g.ags = a."AGS" where a."{1}" >=-1) as subquery using unique gid using srid={4}'.format(geometry,self.indicator.get_id(),s,t,epsg)
