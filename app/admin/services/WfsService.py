@@ -113,7 +113,6 @@ class WfsService(OgcService):
                 # extract the geometry year
 
                 url_geom_year = '{"ind":{"time":"%s"},"query":"getgeomyear"}' % (t)
-                app.logger.debug("request is:\n {0}".format(url_geom_year))
 
                 geom_year_request = requests.post(Config.URL_BACKEND_MONITOR, data={'values':url_geom_year})
                 geom_year = json.loads(geom_year_request.text)
@@ -133,7 +132,7 @@ class WfsService(OgcService):
 
                             # TODO set up the logic to get the correct YEAR for vg250_XX_YEAR_grob from database
                             # Currently a quick-fix is applied: YEAR set to 2017 (Reinis, 26.05.2020)
-                            sql = '{0} from (select g.gid, g.ags, g.{0}, g.gen, a."{1}" as value from vg250_{2}_2017_grob g join basiskennzahlen_{3} a on g.ags = a."AGS" where a."{1}" >=-1) as subquery using unique gid using srid={4}'.format(geometry,self.indicator.get_id(),s,t,epsg)
+                            sql = '{0} from (select g.gid, g.ags, g.{0}, g.gen, a."{1}" as value from vg250_{2}_{5}_grob g join basiskennzahlen_{3} a on g.ags = a."AGS" where a."{1}" >=-1) as subquery using unique gid using srid={4}'.format(geometry,self.indicator.get_id(),s,t,epsg,geom_year)
 
                             layer = ('LAYER \n'
                                     '  NAME "{0}_{1}" \n'
