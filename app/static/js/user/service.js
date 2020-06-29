@@ -43,12 +43,13 @@ const table={
                                     return `https://monitor.ioer.de/?raeumliche_gliederung=gebiete&opacity=0.8&ind=${key}&raumgl=bld`;
                                 }
                             },
-                            indicator_group = `<div><b>${value.ind_name_short}</b></div><div>${value.interpretation}</div>`,
+                            indicator_group = `<div><b>${value.ind_name_short}</b></div><div>${value.interpretation.replace(/°°°°/g, "\n").replace(/°/g, " ")}</div>`,
                             button_group = `<div class="btn-group" role="group" aria-label="Basic example">
                                           <a target="_blank" href="${capability_url}"><button type="button" class="btn btn-warning">GetCapabilities</button></a>
                                           <button type="button" class="btn btn-primary copy" data-url="${url}">URL-Kopieren</button>
                                           <a href="${url_monitor()}" target="_blank"><button type="button" class="btn btn-secondary info_btn">Karte</button></a>
                                         </div>`;
+                        console.log(value.interpretation.replace(/°°°°/g, "\n"));
                         values.push({
                             "name": indicator_group,
                             "url": button_group

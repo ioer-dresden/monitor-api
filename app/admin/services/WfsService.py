@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 import os
 import codecs
+import requests
+import json
 
 from app import *
 from app.admin.services.IndicatorValues import IndicatorValues
 from app.admin.models.Toolbox import Toolbox
 from app.admin.models.IoerIndicator import IoerIndicator
 from app.admin.interfaces.OgcService import OgcService
+from app.Config import Config
 
 class WfsService(OgcService):
     indicator = None
@@ -24,10 +27,10 @@ class WfsService(OgcService):
             for val in values:
                 ind_id = val["id"]
                 ind_name = val['ind_name']
-                ind_description = val['interpretation'].replace('"',"'").replace("\n","")
+                ind_description = val['interpretation'].replace('"',"'").replace("\n","").replace("°°°°","\n").replace("°", " ")
                 times = val["times"]
                 spatial_extends = val["spatial_extends"]
-                methodology = self.toolbox.clean_string(val["methodik"])
+                methodology = self.toolbox.clean_string(val["methodik"]).replace("°°°°","\n").replace("°", " ")
                 unit = val["unit"]
                 #builder
                 self.indicator = IoerIndicator(ind_id, ind_name, ind_description, times, spatial_extends, unit, methodology)
@@ -46,6 +49,7 @@ class WfsService(OgcService):
                 file = codecs.open(file_path, 'w',"utf-8")
             else:
                 file = codecs.open('wfs_{}.map'.format(self.indicator.get_id().upper()), 'w', "utf-8")
+
             '''
                 The following File is created by taking care of the documentation of the Mapserver:  
                 https://mapserver.org/ogc/wfs_server.html
@@ -105,6 +109,14 @@ class WfsService(OgcService):
 
             for t in sorted(time_array):
                 int_time = int(t)
+
+                # extract the geometry year
+
+                url_geom_year = '{"ind":{"time":"%s"},"query":"getgeomyear"}' % (t)
+
+                geom_year_request = requests.post(Config.URL_BACKEND_MONITOR, data={'values':url_geom_year})
+                geom_year = json.loads(geom_year_request.text)
+
                 if int_time>2006:
                     for s in self.indicator.get_spatial_extends():
                         int_s = int(self.indicator.get_spatial_extends()[s])
@@ -120,7 +132,7 @@ class WfsService(OgcService):
 
                             # TODO set up the logic to get the correct YEAR for vg250_XX_YEAR_grob from database
                             # Currently a quick-fix is applied: YEAR set to 2017 (Reinis, 26.05.2020)
-                            sql = '{0} from (select g.gid, g.ags, g.{0}, g.gen, a."{1}" as value from vg250_{2}_2017_grob g join basiskennzahlen_{3} a on g.ags = a."AGS" where a."{1}" >=-1) as subquery using unique gid using srid={4}'.format(geometry,self.indicator.get_id(),s,t,epsg)
+                            sql = '{0} from (select g.gid, g.ags, g.{0}, g.gen, a."{1}" as value from vg250_{2}_{5}_grob g join basiskennzahlen_{3} a on g.ags = a."AGS" where a."{1}" >=-1) as subquery using unique gid using srid={4}'.format(geometry,self.indicator.get_id(),s,t,epsg,geom_year)
 
                             layer = ('LAYER \n'
                                     '  NAME "{0}_{1}" \n'
@@ -154,7 +166,7 @@ class WfsService(OgcService):
 
                             file.write(layer)
             created_layer = self.indicator.toJSON()
-            app.logger.debug("Finished WFS_service for Indicator:\n {0}".format(created_layer))
+            # app.logger.debug("Finished WFS_service for Indicator:\n {0}".format(created_layer))
             file.write("END")
         except IOError as e:
             created_layer =self.indicator.toJSON("I/O error({0})".format(e))
