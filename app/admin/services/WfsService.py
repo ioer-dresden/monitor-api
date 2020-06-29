@@ -112,11 +112,13 @@ class WfsService(OgcService):
                             epsg = '25832'
                             geometry = 'the_geom'
                             # geometry column is different for timeshifts in the year 2000
+                            #
+                            # only the default year in geometry database is active, so only one Projection used
+                            # if s != 'g50' or s != 'stt':
+                            #    if int_time <= 2012:
+                            #        epsg = '31467'
 
-                            if s != 'g50' or s != 'stt':
-                                if int_time <= 2012:
-                                    epsg = '31467'
-                            # TODO set up the logic to get the correct YEAR fot vg250_XX_YEAR_grob from database
+                            # TODO set up the logic to get the correct YEAR for vg250_XX_YEAR_grob from database
                             # Currently a quick-fix is applied: YEAR set to 2017 (Reinis, 26.05.2020)
                             sql = '{0} from (select g.gid, g.ags, g.{0}, g.gen, a."{1}" as value from vg250_{2}_2017_grob g join basiskennzahlen_{3} a on g.ags = a."AGS" where a."{1}" >=-1) as subquery using unique gid using srid={4}'.format(geometry,self.indicator.get_id(),s,t,epsg)
 
@@ -152,11 +154,11 @@ class WfsService(OgcService):
 
                             file.write(layer)
             created_layer = self.indicator.toJSON()
-            app.logger.debug("Finished WMS_service for Indicator:\n {0}".format(created_layer))
+            app.logger.debug("Finished WFS_service for Indicator:\n {0}".format(created_layer))
             file.write("END")
         except IOError as e:
             created_layer =self.indicator.toJSON("I/O error({0})".format(e))
-            app.logger.debug("Error in create WMS_service for Indicator:\n {0}".format(created_layer))
+            app.logger.debug("Error in create WFS_service for Indicator:\n {0}".format(created_layer))
         return created_layer
 
 

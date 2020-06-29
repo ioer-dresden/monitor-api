@@ -159,10 +159,10 @@ class WcsService(OgcService):
                         file.write(layer)
 
             created_layer = self.indicator.toJSON()
-            app.logger.debug("Finished WMS_service for Indicator:\n {0}".format(created_layer))
+            app.logger.debug("Finished WCS_service for Indicator:\n {0}".format(created_layer))
             file.write("END")
 
         except IOError as e:
             created_layer = self.indicator.toJSON("I/O error({0})".format(e))
-            app.logger.debug("Error in create WMS_service for Indicator:\n {0}".format(created_layer))
+            app.logger.debug("Error in create WCS_service for Indicator:\n {0}".format(created_layer))
         return created_layer
