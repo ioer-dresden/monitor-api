@@ -13,7 +13,7 @@ class OGC extends React.Component{
             SwalManager.setLoading("info");
             RequestManager.updateOGCService(this.props.service)
                 .then(result => {
-                    console.log(result);
+                    //console.log(result);
                    SwalManager.removeDialog();
                    let data = result.data;
                    let resultJSX = (

@@ -10,9 +10,9 @@ class IndicatorValues:
         self.format=format
         req = requests.post(self.url, data={'values':self.json})
         self.values = json.loads(req.text)
-        print (self.values)
+        # print (self.values)
 
-    #methon to return all possible indicator values which are possible for an indicator
+    #method to return all possible indicator values which are possible for an indicator
     def getAllAvaliableServiceValues(self,service):
         res =[]
         for x in self.values:

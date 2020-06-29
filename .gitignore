@@ -11,3 +11,11 @@ python
 python3
 python3.4
 gunicorn-error.log
+app/.idea/app.iml
+app/.idea/encodings.xml
+app/.idea/misc.xml
+app/.idea/modules.xml
+app/.idea/vcs.xml
+app/.idea/workspace.xml
+app/__init__.pyc
+*.pyc
