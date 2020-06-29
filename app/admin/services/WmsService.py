@@ -134,6 +134,7 @@ class WmsService(OgcService):
                     '        "wms_fees" "none"\n'
                     '        "wms_accessconstraints" "none"\n'
                     '        "wms_keywordlist" "wms,{0}"\n'
+                    '        "wms_addresstype" "postal"\n'
                     '        "wms_address" "Weberplatz 1"\n'
                     '        "wms_city" "Dresden"\n'
                     '        "wms_stateorprovince" "Sachsen"\n'
