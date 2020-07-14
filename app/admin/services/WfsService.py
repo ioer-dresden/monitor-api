@@ -130,8 +130,6 @@ class WfsService(OgcService):
                             #    if int_time <= 2012:
                             #        epsg = '31467'
 
-                            # TODO set up the logic to get the correct YEAR for vg250_XX_YEAR_grob from database
-                            # Currently a quick-fix is applied: YEAR set to 2017 (Reinis, 26.05.2020)
                             sql = '{0} from (select g.gid, g.ags, g.{0}, g.gen, a."{1}" as value from vg250_{2}_{5}_grob g join basiskennzahlen_{3} a on g.ags = a."AGS" where a."{1}" >=-1) as subquery using unique gid using srid={4}'.format(geometry,self.indicator.get_id(),s,t,epsg,geom_year)
 
                             layer = ('LAYER \n'
