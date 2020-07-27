@@ -26,7 +26,7 @@ class WcsService(OgcService):
         results = []
         for x in wcs_values:
             values = x['values']
-            # get the possible rster extends
+            # get the possible raster extends
             for val in values:
                 ind_id = val["id"]
                 ind_name = val['ind_name']
