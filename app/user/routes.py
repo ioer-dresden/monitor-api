@@ -74,7 +74,7 @@ def get_service():
                 session['key'] = True
                 return response
     except Exception as e:
-            return InvalidUsage(e,status_code=410)
+            return InvalidUsage(e.args[0],status_code=410)
 '''
 User Log In
 '''
@@ -106,7 +106,7 @@ def login():
 
         return render_template('user/login.html', form=form)
     except Exception as e:
-            return InvalidUsage(e,status_code=410)
+            return InvalidUsage(e.args[0],status_code=410)
 '''
 Registration
 '''
@@ -141,7 +141,7 @@ def signup():
                 return render_template('user/signup.html')
         return render_template('user/signup.html', form=form)
     except Exception as e:
-            return InvalidUsage(e,status_code=410)
+            return InvalidUsage(e.args[0],status_code=410)
 '''
 Email confirmation
 '''
@@ -162,7 +162,7 @@ def confirm_email(token_pass):
         else:
             return render_template('user/confirmed_mail.html', confimed=False)
     except Exception as e:
-            return InvalidUsage(e,status_code=410)
+            return InvalidUsage(e.args[0],status_code=410)
 
 '''
 password reset
@@ -188,7 +188,7 @@ def send_reset_password():
 
         return render_template('user/reset_password.html',form_mail=form)
     except Exception as e:
-            return InvalidUsage(e,status_code=410)
+            return InvalidUsage(e.args[0],status_code=410)
 
 @user.route('/reset/<token_pass>',methods=['GET', 'POST'])
 def reset_password(token_pass):
@@ -209,7 +209,7 @@ def reset_password(token_pass):
             error = Markup('<div class="alert alert-danger w-100" role="alert">Der Token für die Zurücksetzung ist abgelaufen</div>')
             return render_template('user/reset_password.html', error=error)
     except Exception as e:
-            return InvalidUsage(e,status_code=410)
+            return InvalidUsage(e.args[0],status_code=410)
 '''
 Service overview, shown if the USER is authenticated
 '''
@@ -222,7 +222,7 @@ def user_services():
         else:
            return redirect("{}login".format(Config.URL_ENDPOINT))
     except Exception as e:
-            return InvalidUsage(e,status_code=410)
+            return InvalidUsage(e.args[0],status_code=410)
 '''
 show/generate API Key
 '''
@@ -236,7 +236,7 @@ def api_key():
         else:
             return url_for('user.login')
     except Exception as e:
-            return InvalidUsage(e,status_code=410)
+            return InvalidUsage(e.args[0],status_code=410)
 
 '''
 Methods for AJAX
@@ -251,7 +251,7 @@ def check_key():
         else:
             return  jsonify(False)
     except Exception as e:
-            return InvalidUsage(e,status_code=410)
+            return InvalidUsage(e.args[0],status_code=410)
 
 @user.route('/insert_key',methods=['GET', 'POST'])
 def insert_key():
@@ -262,7 +262,7 @@ def insert_key():
         db.engine.execute("UPDATE users set api_key='{}' where username='{}' and id={}".format(key,name,id))
         return jsonify(True)
     except:
-        return InvalidUsage(e,status_code=410)
+        return InvalidUsage(e.args[0],status_code=410)
 
 @user.route('/logout')
 @login_required
@@ -271,7 +271,7 @@ def logout():
         logout_user()
         return redirect(Config.URL_ENDPOINT)
     except Exception as e:
-        return InvalidUsage(e, status_code=410)
+        return InvalidUsage(e.args[0], status_code=410)
 
 @user.errorhandler(InvalidUsage)
 def handle_invalid_usage(error):
