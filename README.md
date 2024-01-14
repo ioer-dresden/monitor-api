@@ -7,7 +7,7 @@ Im folgenden Abschnitt sind kurz die bis jetzt implementierten Module zusammenge
 |:-----|:---------------|:--------------------|
 | admin | app/admin | Alle Administrativen Requests,GUI und OGC-Services|
 | monitor | app/monitor | Monitor Requests |
-| sora | app/sora | API für das Forschungsprojekt [SoRa](http://www.sora-projekt.de/)|
+| sora | app/sora | API für das Forschungsprojekt [SoRa](https://sora-service.org/)|
 | user | app/user | Backend, GUI für die Bereitstellung der OGC-Dienste  |
 
 ### Dokumentation
